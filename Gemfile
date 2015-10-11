@@ -22,6 +22,9 @@ gem 'devise'
 # Omniauth fb with devise
 gem 'omniauth-facebook'
 
+# Koala for Facebook Graph API calls
+gem "koala", "~> 2.2"
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
