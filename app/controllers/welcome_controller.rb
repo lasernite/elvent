@@ -67,6 +67,9 @@ class WelcomeController < ApplicationController
 			end
 		end
 
+		@cordit = Geocoder.search('cambridge, massachusetts')
+  		@cord = [@cordit[0].latitude, @cordit[0].longitude]
+
 	end
   end
 end

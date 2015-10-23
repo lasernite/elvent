@@ -25,6 +25,9 @@ gem 'omniauth-facebook'
 # Koala for Facebook Graph API calls
 gem "koala", "~> 2.2"
 
+# geolocation
+gem 'geocoder'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

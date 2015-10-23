@@ -49,6 +49,7 @@ GEM
     execjs (2.6.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    geocoder (1.2.11)
     hashie (3.4.2)
     hike (1.2.3)
     i18n (0.7.0)
@@ -153,6 +154,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   koala (~> 2.2)
