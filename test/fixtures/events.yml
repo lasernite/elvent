@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  latitude: 1.5
+  longitude: 1.5
+  description: MyText
+  start_time: 2015-10-24 16:51:22
+  fb_id: 1
+  attending_count: 1
+
+two:
+  name: MyString
+  latitude: 1.5
+  longitude: 1.5
+  description: MyText
+  start_time: 2015-10-24 16:51:22
+  fb_id: 1
+  attending_count: 1
