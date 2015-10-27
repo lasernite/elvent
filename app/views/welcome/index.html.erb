@@ -1,7 +1,12 @@
 <h1>Let our elves work for you!</h1>
 <% if user_signed_in? %>
 	<%= link_to("Logout", destroy_user_session_path, :method => :delete) %>
-	
+
+	<% @local_events.each do |event| %>
+		<br>
+		<br>
+		<%= event.name %>
+	<% end %>
 	<%= @just_string %>
 	<%= @total_word_count %>
 <% else %>
