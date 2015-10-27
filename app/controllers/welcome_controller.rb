@@ -12,8 +12,6 @@ class WelcomeController < ApplicationController
 		@user_fb_likes = @user_fb['likes']['data']
 		@user_fb_posts = @user_fb['posts']['data']
 
-		@testit = @graph.get_object("me?fields=posts&limit=200")
-
 		# General hash of word counts generator
 		def word_counter(data, attribute)
 			words_hash = {}
@@ -67,8 +65,50 @@ class WelcomeController < ApplicationController
 			end
 		end
 
-		@cordit = Geocoder.search('Boston, Massachusetts')
-  		@cord = [@cordit[0].latitude, @cordit[0].longitude]
+		# Fb query city name for events
+  		@user_fb_location = @user_fb['location']['name']
+  		@geo_location = Geocoder.search(@user_fb_location)
+  		@city_fb_events = @graph.get_object("search?q=#{@geo_location[0].city}&type=event&limit=500&fields=id,name,description,place,start_time,category,attending_count")
+  		
+  		@city_fb_events.each do |event|
+  			# If new then create
+  			if Event.find_by(fb_id: event['id']) == nil
+  				new_event = Event.new
+  				new_event.fb_id = event['id']
+  				new_event.name = event['name']
+  				new_event.description = event['description']
+  				new_event.attending_count = event['attending_count']
+  				new_event.start_time = event['start_time']
+  				# location storing, avoiding nils
+  				place = event['place']
+  				unless place == nil
+  					location = place['location']
+  				end
+  				unless location == nil
+  					new_event.longitude = location['longitude']
+  					new_event.latitude = location['latitude']
+  				end
+  				new_event.save
+  			# else already exists, update event info
+  			else
+  				stored_event = Event.find_by(fb_id: event['id'])
+  				stored_event.fb_id = event['id']
+  				stored_event.name = event['name']
+  				stored_event.description = event['description']
+  				stored_event.attending_count = event['attending_count']
+  				stored_event.start_time = event['start_time']
+  				# location storing, avoiding nils
+  				place = event['place']
+  				unless place == nil
+  					location = place['location']
+  				end
+  				unless location == nil
+  					stored_event.longitude = location['longitude']
+  					stored_event.latitude = location['latitude']
+  				end
+  				stored_event.save
+  			end
+  		end
 
 	end
   end
