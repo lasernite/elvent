@@ -111,15 +111,15 @@ class WelcomeController < ApplicationController
   		end
 
   		# Get local events within about 20 miles, or about 0.3 latitude and longitude
-  		lat_high = @geo_location[0].latitude + 0.3
-  		lat_low = @geo_location[0].latitude - 0.3
-  		long_high = @geo_location[0].longitude + 0.3
-  		long_low = @geo_location[0].latitude - 0.3
-  		local_events_lat_low = Event.where("latitude > ?", lat_low)
-  		local_events_lat_high = local_events_lat_low.where("latitude < ?", lat_high)
-  		local_events_long_low = local_events_lat_high.where("longitude > ?", long_low)
-  		local_events_long_high = local_events_lat_low.where("longitude < ?", long_high)
-  		@local_events = local_events_long_high
+  		@lat_high = @geo_location[0].latitude + 0.3
+  		@lat_low = @geo_location[0].latitude - 0.3
+  		@long_high = @geo_location[0].longitude + 0.3
+  		@long_low = @geo_location[0].longitude - 0.3
+  		@local_events_lat_low = Event.where("latitude > ?", @lat_low)
+  		@local_events_lat_high = @local_events_lat_low.where("latitude < ?", @lat_high)
+  		@local_events_long_low = @local_events_lat_high.where("longitude > ?", @long_low)
+  		@local_events_long_high = @local_events_long_low.where("longitude < ?", @long_high)
+  		@local_events = @local_events_long_high
 
   		@local_events_upcoming = @local_events.where("start_time > ?", Time.now)
   		@local_events_upcoming_ten_days = @local_events_upcoming.where("start_time < ?", Time.now + 864000)
