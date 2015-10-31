@@ -65,66 +65,83 @@ class WelcomeController < ApplicationController
 			end
 		end
 
-		# Fb query city name for events
+		# Get user location
   		@user_fb_location = @user_fb['location']['name']
-  		@geo_location = Geocoder.search(@user_fb_location)
-  		@city_fb_events = @graph.get_object("search?q=#{@geo_location[0].city}&type=event&limit=500&fields=id,name,description,place,start_time,category,attending_count")
-  		
-  		@city_fb_events.each do |event|
-  			# If new then create
-  			if Event.find_by(fb_id: event['id']) == nil
-  				new_event = Event.new
-  				new_event.fb_id = event['id']
-  				new_event.name = event['name']
-  				new_event.description = event['description']
-  				new_event.attending_count = event['attending_count']
-  				new_event.start_time = event['start_time']
-  				# location storing, avoiding nils
-  				place = event['place']
-  				unless place == nil
-  					location = place['location']
-  				end
-  				unless location == nil
-  					new_event.longitude = location['longitude']
-  					new_event.latitude = location['latitude']
-  				end
-  				new_event.save
-  			# else already exists, update event info
-  			else
-  				stored_event = Event.find_by(fb_id: event['id'])
-  				stored_event.fb_id = event['id']
-  				stored_event.name = event['name']
-  				stored_event.description = event['description']
-  				stored_event.attending_count = event['attending_count']
-  				stored_event.start_time = event['start_time']
-  				# location storing, avoiding nils
-  				place = event['place']
-  				unless place == nil
-  					location = place['location']
-  				end
-  				unless location == nil
-  					stored_event.longitude = location['longitude']
-  					stored_event.latitude = location['latitude']
-  				end
-  				stored_event.save
-  			end
+  		@geo_location = Geocoder.search(@user_fb_location)[0]
+  		# Nearby coordinates ranges (0.3 = ~20 miles)
+  		lat_high = @geo_location.latitude + 0.3
+  		lat_low = @geo_location.latitude - 0.3
+  		long_high = @geo_location.longitude + 0.3
+  		long_low = @geo_location.longitude - 0.3
+  		# Save to locations model and add to user if not present, otherwise just update user
+  		if Location.where(city: @geo_location.city).count == 0
+  			new_location = Location.new
+  			new_location.city = @geo_location.city
+  			new_location.state = @geo_location.state
+  			new_location.country = @geo_location.country
+  			new_location.latitude = @geo_location.latitude
+  			new_location.longitude = @geo_location.longitude
+  			new_location.save
+  			# Save/update location_id to user model
+  			@user.location_id = new_location.id
+  			@user.save
+  		else
+  			@user.location_id = Location.find_by(city: @geo_location.city).id
   		end
+  		# Get nearby cities from locations model, ex. cambridge -> boston
+  		@nearby_locations = Location.where("latitude > ? and latitude < ? and longitude > ? and longitude < ?", lat_low, lat_high, long_low, long_high)
+  		# Fb query each nearby city name for events
+  		@nearby_locations.each do |location|
+  			# query fb events by location city
+  			city_fb_events = @graph.get_object("search?q=#{location.city}&type=event&limit=500&fields=id,name,description,place,start_time,category,attending_count")
+  			# save/update events in db
+	  		city_fb_events.each do |event|
+	  			# If new then create
+	  			if Event.find_by(fb_id: event['id']) == nil
+	  				new_event = Event.new
+	  				new_event.fb_id = event['id']
+	  				new_event.name = event['name']
+	  				new_event.description = event['description']
+	  				new_event.attending_count = event['attending_count']
+	  				new_event.start_time = event['start_time']
+	  				# location storing, avoiding nils
+	  				place = event['place']
+	  				unless place == nil
+	  					location = place['location']
+	  				end
+	  				unless location == nil
+	  					new_event.longitude = location['longitude']
+	  					new_event.latitude = location['latitude']
+	  				end
+	  				new_event.save
+	  			# else already exists, update event info
+	  			else
+	  				stored_event = Event.find_by(fb_id: event['id'])
+	  				stored_event.fb_id = event['id']
+	  				stored_event.name = event['name']
+	  				stored_event.description = event['description']
+	  				stored_event.attending_count = event['attending_count']
+	  				stored_event.start_time = event['start_time']
+	  				# location storing, avoiding nils
+	  				place = event['place']
+	  				unless place == nil
+	  					location = place['location']
+	  				end
+	  				unless location == nil
+	  					stored_event.longitude = location['longitude']
+	  					stored_event.latitude = location['latitude']
+	  				end
+	  				stored_event.save
+	  			end
+	  		end
+		end
 
   		# Get local events within about 20 miles, or about 0.3 latitude and longitude
-  		@lat_high = @geo_location[0].latitude + 0.3
-  		@lat_low = @geo_location[0].latitude - 0.3
-  		@long_high = @geo_location[0].longitude + 0.3
-  		@long_low = @geo_location[0].longitude - 0.3
-  		@local_events_lat_low = Event.where("latitude > ?", @lat_low)
-  		@local_events_lat_high = @local_events_lat_low.where("latitude < ?", @lat_high)
-  		@local_events_long_low = @local_events_lat_high.where("longitude > ?", @long_low)
-  		@local_events_long_high = @local_events_long_low.where("longitude < ?", @long_high)
-  		@local_events = @local_events_long_high
-
-  		@local_events_upcoming = @local_events.where("start_time > ?", Time.now)
-  		@local_events_upcoming_ten_days = @local_events_upcoming.where("start_time < ?", Time.now + 864000)
+  		@local_events = Event.where("latitude > ? and latitude < ? and longitude > ? and longitude < ?", lat_low, lat_high, long_low, long_high)
 
   		# Get local events that are within the upcoming week
+  		@local_events_upcoming = @local_events.where("start_time > ?", Time.now)
+  		@local_events_upcoming_ten_days = @local_events_upcoming.where("start_time < ?", Time.now + 864000)	
 
 	end
   end
