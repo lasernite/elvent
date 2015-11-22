@@ -20,5 +20,8 @@
 	<%= @just_string %>
 	<%= @total_word_count %>
 <% else %>
-	<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+	<div class="fb_login_button">
+		<%= image_tag "facebook_logo.png", :class => 'facebook_logo' %>
+		<%= link_to "Log in with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb_login_link" %>
+	</div>
 <% end %>

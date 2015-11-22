@@ -1,3 +1,39 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html { 
+  //background: url(asset-path('nicholas_cage_elf.gif')) no-repeat center center fixed; 
+  background-size: cover;
+}
+
+body {
+    height: 100%;
+}
+
+.fb_login_button {
+	width: 400px;
+	height: 80px;
+	border-radius: 6px;
+	background: linear-gradient(rgb(76, 105, 186), rgb(59, 85, 160));
+}
+
+.fb_login_button:hover {
+	background: linear-gradient(rgb(92, 121, 202), rgb(75, 101, 176));
+}
+
+.fb_login_link {
+	margin-right: 18px;
+	margin-top: 25px;
+	color: #fff;
+	font-size: 30px;
+	text-decoration: none;
+	font-family: helvetica, arial, sans-serif;
+	float: right;
+}
+
+.facebook_logo {
+	width: 60px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
