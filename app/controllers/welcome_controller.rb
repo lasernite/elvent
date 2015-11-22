@@ -93,9 +93,10 @@ class WelcomeController < ApplicationController
   		# generic words for broadening event search results
   		@extra_words = ["", "the", "and", "to", "of", "a", "in", "for", "you", "is", "at", "be", "on", "with", "will", "this", "we"]
   		@extra_words2 = ["", "party", "nite", "laser", "mit", "people", "night", "shared", "free", "school", "everyone", "link", "dance", "class", "fun", "birthday", "senior"]
+  		@extra_words3 = [""]
   		# Fb query each nearby city name for events
   		for loc in @nearby_locations do
-  			for word in @extra_words do
+  			for word in @extra_words3 do
 	  			# query fb events by location city
 	  			city_fb_events = @graph.get_object("search?q=#{word + " " + loc['city']}&type=event&limit=500&fields=id,name,description,place,start_time,category,attending_count")
 	  			# save/update events in db

@@ -1,4 +1,3 @@
-<h1>Let our elves work for you!</h1>
 <% if user_signed_in? %>
 	<%= link_to("Logout", destroy_user_session_path, :method => :delete) %>
 
@@ -20,8 +19,18 @@
 	<%= @just_string %>
 	<%= @total_word_count %>
 <% else %>
-	<div class="fb_login_button">
-		<%= image_tag "facebook_logo.png", :class => 'facebook_logo' %>
-		<%= link_to "Log in with Facebook", user_omniauth_authorize_path(:facebook), :class => "fb_login_link" %>
+	<div class="home_page">
+		<div class="welcome_one">Discover Nearby Events</div>
+		<div class="welcome_two">Let Our Elves Work for You!</div>
+		<div class="fb_login_link">
+			<%= link_to user_omniauth_authorize_path(:facebook) do  %>
+				<div class="fb_login_button">
+					<%= image_tag "facebook_logo.png", :class => 'facebook_logo' %>
+					<div class="fb_login_text" %> 
+						Log in with Facebook
+					</div>
+				</div>
+			<% end %>
+		</div>
 	</div>
 <% end %>
