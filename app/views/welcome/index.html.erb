@@ -2,7 +2,7 @@
 <% if user_signed_in? %>
 	<%= link_to("Logout", destroy_user_session_path, :method => :delete) %>
 
-	<% @local_events_upcoming_ten_days.each do |event| %>
+	<% @local_top_events.reverse.each do |event| %>
 		<br>
 		<br>
 		<a href="https://facebook.com/events/<%= event.fb_id %>" target="_blank" >
@@ -13,6 +13,8 @@
 		<%= event.start_time %>
 		<%= event.longitude %>
 		<%= event.latitude %>
+		<br>
+		<%= event.attending_count %>
 		<br>
 	<% end %>
 	<%= @just_string %>
