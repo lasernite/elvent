@@ -7,6 +7,10 @@ html, body {
     margin: 0;
 }
 
+body {
+	background: linear-gradient(rgb(76, 186, 105), rgb(59, 160, 85));
+}
+
 .home_page {
 	height: 100vh;
 	width: 100vw;
@@ -19,6 +23,8 @@ html, body {
 	font-family: helvetica, arial, sans-serif;
 	font-size: 72px;
 	padding-top: 8vh;
+	padding-left: 10px;
+	padding-right: 10px;
 	color: #fff;
 	font-weight: bold;
 	text-shadow: 4px 4px #000;
@@ -29,7 +35,9 @@ html, body {
 	text-align: center;
 	font-family: helvetica, arial, sans-serif;
 	font-size: 48px;
-	padding-top: 30vh;
+	padding-top: 27vh;
+	padding-left: 10px;
+	padding-right: 10px;
 	color: #fff;
 	font-weight: bold;
 	text-shadow: 3px 3px #000;
@@ -38,6 +46,7 @@ html, body {
 .fb_login_link {
 	position: absolute;
 	margin-top: 28px;
+	padding-bottom: 10px;
 	width: 400px;
 	margin-left: calc(50% - 200px);
 }
