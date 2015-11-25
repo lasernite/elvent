@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  # Static pages
+  get '/privacy_policy' => 'welcome#privacy_policy'
+  get '/terms' => 'welcome#terms'
+  get '/support' => 'welcome#support'
+
   # Devise :)
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
