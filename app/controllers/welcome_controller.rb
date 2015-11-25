@@ -64,7 +64,7 @@ class WelcomeController < ApplicationController
 		# 		@just_string.append(entry[0])
 		# 	end
 		# end
-		
+
 
 		# Get user location
   		@user_fb_location = @user_fb['location']['name']
@@ -99,7 +99,7 @@ class WelcomeController < ApplicationController
   		for loc in @nearby_locations do
   			for word in @extra_words3 do
 	  			# query fb events by location city
-	  			city_fb_events = @graph.get_object("search?q=#{word + " " + loc['city']}&type=event&limit=500&fields=id,name,description,place,start_time,category,attending_count")
+	  			city_fb_events = @graph.get_object("search?q=#{word + " " + loc['city']}&type=event&limit=500&fields=id,name,description,place,start_time,category,attending_count,cover")
 	  			# save/update events in db
 	  			unless city_fb_events == nil
 			  		city_fb_events.each do |event|
@@ -111,6 +111,11 @@ class WelcomeController < ApplicationController
 			  				new_event.description = event['description']
 			  				new_event.attending_count = event['attending_count']
 			  				new_event.start_time = event['start_time']
+			  				# cover photo storing, avoiding nils
+			  				cover = event['cover']
+			  				unless event['cover'] == nil
+			  					new_event.image_url = cover['source']
+			  				end
 			  				# location storing, avoiding nils
 			  				place = event['place']
 			  				unless place == nil
@@ -129,6 +134,11 @@ class WelcomeController < ApplicationController
 			  				stored_event.description = event['description']
 			  				stored_event.attending_count = event['attending_count']
 			  				stored_event.start_time = event['start_time']
+			  				# cover photo storing, avoiding nils
+			  				cover = event['cover']
+			  				unless event['cover'] == nil
+			  					stored_event.image_url = cover['source']
+			  				end
 			  				# location storing, avoiding nils
 			  				place = event['place']
 			  				unless place == nil

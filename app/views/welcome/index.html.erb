@@ -2,6 +2,7 @@
 	<%= link_to("Logout", destroy_user_session_path, :method => :delete) %>
 
 	<% @local_top_events.reverse.each do |event| %>
+		<%= image_tag event.image_url %>
 		<br>
 		<br>
 		<a href="https://facebook.com/events/<%= event.fb_id %>" target="_blank" >
