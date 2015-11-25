@@ -8,11 +8,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	    if @user.persisted?
 	      # Update user token
           @user.fb_token = @fb_response.credentials.token
-          # Deliver signup mail
-	      # UserNotifier.send_signup_email(@user).deliver
           # Sign in
 	      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
 	      set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
+	      # Deliver signup mail
+	      UserNotifier.send_signup_email(@user).deliver
 	    else
 	      session["devise.facebook_data"] = request.env["omniauth.auth"]
 	      redirect_to new_user_registration_url
