@@ -7,10 +7,11 @@ class WelcomeController < ApplicationController
 
 		# Facebook graph api load for user
 		@graph = Koala::Facebook::API.new(@user.fb_token)
-		@user_fb = @graph.get_object("me?fields=name,id,location,events.limit(500),likes.limit(500),friends,posts.limit(500)")
-		@user_past_fb_events = @user_fb['events']['data']
-		@user_fb_likes = @user_fb['likes']['data']
-		@user_fb_posts = @user_fb['posts']['data']
+		@user_fb = @graph.get_object("me?fields=name,id,location")
+		# events.limit(500),likes.limit(500),friends,posts.limit(500)
+		# @user_past_fb_events = @user_fb['events']['data']
+		# @user_fb_likes = @user_fb['likes']['data']
+		# @user_fb_posts = @user_fb['posts']['data']
 
 		# # General hash of word counts generator
 		# def word_counter(data, attribute)
