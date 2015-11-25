@@ -10,7 +10,8 @@ Devise.setup do |config|
 
   # Omniauth Facebook 
   API_KEYS = YAML::load_file("#{Rails.root}/config/api_keys.yml")[Rails.env]
-  config.omniauth :facebook, API_KEYS['facebook']['app_id'], API_KEYS['facebook']['app_secret'], :scope => "public_profile,email,user_friends,user_about_me,user_events,user_hometown,user_likes,user_location,user_managed_groups,user_posts", info_fields: 'email, name'
+  config.omniauth :facebook, API_KEYS['facebook']['app_id'], API_KEYS['facebook']['app_secret'], :scope => "email,user_location", info_fields: 'email, name'
+  #,public_profile,user_friends,user_about_me,user_events,user_hometown,user_likes,user_managed_groups,user_posts
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
