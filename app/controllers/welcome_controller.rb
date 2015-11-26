@@ -92,6 +92,11 @@ class WelcomeController < ApplicationController
   		end
   		# Get nearby cities from locations model, ex. cambridge -> boston
   		@nearby_locations = Location.where("latitude > ? and latitude < ? and longitude > ? and longitude < ?", lat_low, lat_high, long_low, long_high)
+
+  		# Eventbrite API load
+  		@response = Eventbrite::Event.search({popular: true})
+
+
   		# generic words for broadening event search results
   		@extra_words = ["", "the", "and", "to", "of", "a", "in", "for", "you", "is", "at", "be", "on", "with", "will", "this", "we"]
   		@extra_words2 = ["", "party", "nite", "laser", "mit", "people", "night", "shared", "free", "school", "everyone", "link", "dance", "class", "fun", "birthday", "senior"]

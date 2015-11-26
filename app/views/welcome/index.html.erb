@@ -1,5 +1,7 @@
+<%= @eb_events %>
 
 <% if user_signed_in? %>
+	<%= @response %>
 	<%= link_to("Logout", destroy_user_session_path, :method => :delete) %>
 
 	<% @local_top_events.reverse.each do |event| %>

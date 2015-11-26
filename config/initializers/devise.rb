@@ -13,6 +13,9 @@ Devise.setup do |config|
   config.omniauth :facebook, API_KEYS['facebook']['app_id'], API_KEYS['facebook']['app_secret'], :scope => "email,user_location", info_fields: 'email, name'
   #,public_profile,user_friends,user_about_me,user_events,user_hometown,user_likes,user_managed_groups,user_posts
 
+  # Eventbrite API
+  Eventbrite.token = '2X4PITU23QHHGRUFYXAP'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
