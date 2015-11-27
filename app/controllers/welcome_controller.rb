@@ -68,8 +68,10 @@ class WelcomeController < ApplicationController
 
 
 		# Get user location
+		# If no facebook location provided, use geocoder
 		if @user_fb['location'] == [] or @user_fb['location'] == nil
   			@geo_location = request.location
+  		# Else use facebook location, look up specifics on geocoder
   		else
   			@user_fb_location = @user_fb['location']['name']
   			@geo_location = Geocoder.search(@user_fb_location)[0]
@@ -105,65 +107,65 @@ class WelcomeController < ApplicationController
   		@extra_words = ["", "the", "and", "to", "of", "a", "in", "for", "you", "is", "at", "be", "on", "with", "will", "this", "we"]
   		@extra_words2 = ["", "party", "nite", "laser", "mit", "people", "night", "shared", "free", "school", "everyone", "link", "dance", "class", "fun", "birthday", "senior"]
   		@extra_words3 = [""]
-  		# Fb query each nearby city name for events
-  		for loc in @nearby_locations do
-  			for word in @extra_words3 do
-	  			# query fb events by location city
-	  			city_fb_events = @graph.get_object("search?q=#{word + " " + loc['city']}&type=event&limit=500&fields=id,name,description,place,start_time,category,attending_count,cover")
-	  			# save/update events in db
-	  			unless city_fb_events == nil
-			  		city_fb_events.each do |event|
-			  			# If new then create
-			  			if Event.find_by(fb_id: event['id']) == nil
-			  				new_event = Event.new
-			  				new_event.fb_id = event['id']
-			  				new_event.name = event['name']
-			  				new_event.description = event['description']
-			  				new_event.attending_count = event['attending_count']
-			  				new_event.start_time = event['start_time']
-			  				# cover photo storing, avoiding nils
-			  				cover = event['cover']
-			  				unless event['cover'] == nil
-			  					new_event.image_url = cover['source']
-			  				end
-			  				# location storing, avoiding nils
-			  				place = event['place']
-			  				unless place == nil
-			  					location = place['location']
-			  				end
-			  				unless location == nil
-			  					new_event.longitude = location['longitude']
-			  					new_event.latitude = location['latitude']
-			  				end
-			  				new_event.save
-			  			# else already exists, update event info
-			  			else
-			  				stored_event = Event.find_by(fb_id: event['id'])
-			  				stored_event.fb_id = event['id']
-			  				stored_event.name = event['name']
-			  				stored_event.description = event['description']
-			  				stored_event.attending_count = event['attending_count']
-			  				stored_event.start_time = event['start_time']
-			  				# cover photo storing, avoiding nils
-			  				cover = event['cover']
-			  				unless event['cover'] == nil
-			  					stored_event.image_url = cover['source']
-			  				end
-			  				# location storing, avoiding nils
-			  				place = event['place']
-			  				unless place == nil
-			  					location = place['location']
-			  				end
-			  				unless location == nil
-			  					stored_event.longitude = location['longitude']
-			  					stored_event.latitude = location['latitude']
-			  				end
-			  				stored_event.save
-			  			end
-			  		end
-			  	end
-	  		end
-		end
+  # 		# Fb query each nearby city name for events
+  # 		for loc in @nearby_locations do
+  # 			for word in @extra_words3 do
+	 #  			# query fb events by location city
+	 #  			city_fb_events = @graph.get_object("search?q=#{word + " " + loc['city']}&type=event&limit=500&fields=id,name,description,place,start_time,category,attending_count,cover")
+	 #  			# save/update events in db
+	 #  			unless city_fb_events == nil
+		# 	  		city_fb_events.each do |event|
+		# 	  			# If new then create
+		# 	  			if Event.find_by(fb_id: event['id']) == nil
+		# 	  				new_event = Event.new
+		# 	  				new_event.fb_id = event['id']
+		# 	  				new_event.name = event['name']
+		# 	  				new_event.description = event['description']
+		# 	  				new_event.attending_count = event['attending_count']
+		# 	  				new_event.start_time = event['start_time']
+		# 	  				# cover photo storing, avoiding nils
+		# 	  				cover = event['cover']
+		# 	  				unless event['cover'] == nil
+		# 	  					new_event.image_url = cover['source']
+		# 	  				end
+		# 	  				# location storing, avoiding nils
+		# 	  				place = event['place']
+		# 	  				unless place == nil
+		# 	  					location = place['location']
+		# 	  				end
+		# 	  				unless location == nil
+		# 	  					new_event.longitude = location['longitude']
+		# 	  					new_event.latitude = location['latitude']
+		# 	  				end
+		# 	  				new_event.save
+		# 	  			# else already exists, update event info
+		# 	  			else
+		# 	  				stored_event = Event.find_by(fb_id: event['id'])
+		# 	  				stored_event.fb_id = event['id']
+		# 	  				stored_event.name = event['name']
+		# 	  				stored_event.description = event['description']
+		# 	  				stored_event.attending_count = event['attending_count']
+		# 	  				stored_event.start_time = event['start_time']
+		# 	  				# cover photo storing, avoiding nils
+		# 	  				cover = event['cover']
+		# 	  				unless event['cover'] == nil
+		# 	  					stored_event.image_url = cover['source']
+		# 	  				end
+		# 	  				# location storing, avoiding nils
+		# 	  				place = event['place']
+		# 	  				unless place == nil
+		# 	  					location = place['location']
+		# 	  				end
+		# 	  				unless location == nil
+		# 	  					stored_event.longitude = location['longitude']
+		# 	  					stored_event.latitude = location['latitude']
+		# 	  				end
+		# 	  				stored_event.save
+		# 	  			end
+		# 	  		end
+		# 	  	end
+	 #  		end
+		# end
 
   		# Get local events within about 20 miles, or about 0.3 latitude and longitude
   		@local_events = Event.where("latitude > ? and latitude < ? and longitude > ? and longitude < ?", lat_low, lat_high, long_low, long_high)
@@ -172,6 +174,7 @@ class WelcomeController < ApplicationController
   		@local_events_upcoming = @local_events.where("start_time > ?", Time.now)
   		@local_events_upcoming_ten_days = @local_events_upcoming.where("start_time < ?", Time.now + 864000)	
   		@local_top_events = @local_events_upcoming_ten_days.sort_by {|event| event.attending_count}
+  		@local_top_12 = @local_top_events.reverse[0..11]
 
 	end
   end
