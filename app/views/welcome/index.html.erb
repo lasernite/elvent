@@ -354,7 +354,12 @@
 <!-- End of 2-columns --> 
 <% end %>
 
-<%= link_to("Logout", destroy_user_session_path, :method => :delete, :class => "logout_button") %>
+<center>
+	<%= link_to("Logout", destroy_user_session_path, :method => :delete, :class => "bottom_button") %>
+	<%= link_to('Privacy Policy', 'privacy_policy', :target => '_blank', :class => "bottom_button") %>
+	<%= link_to('Terms', 'terms', :target => '_blank', :class => "bottom_button") %>
+	<%= link_to('Support', 'support', :target => '_blank', :class => "bottom_button") %>
+</center>
 
 <%# postfooter.html was here %>
 
