@@ -71,60 +71,9 @@
          }
       </style>
    </head>
-<!-- Start of preheader -->
-<table width="100%" bgcolor="#202020" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
-   <tbody>
-      <tr>
-         <td>
-            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-               <tbody>
-                  <tr>
-                     <td width="100%">
-                        <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-                           <tbody>
-                              <!-- Spacing -->
-                              <tr>
-                                 <td width="100%" height="20"></td>
-                              </tr>
-                              <!-- Spacing -->
-                              <tr>
-                                 <td>
-                                    <table width="280" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
-                                       <tbody>
-                                          <tr>
-                                             <td align="left" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #ffffff">
-                                                Subject Line Here
-                                             </td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
-                                    <table width="280" align="left" border="0" cellpadding="0" cellspacing="0" class="emhide">
-                                       <tbody>
-                                          <tr>
-                                             <td align="right" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #ffffff">
-                                                <a href="#" style="text-decoration: none; color: #ffffff">View Online </a> 
-                                             </td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
-                                 </td>
-                              </tr>
-                              <!-- Spacing -->
-                              <tr>
-                                 <td width="100%" height="20"></td>
-                              </tr>
-                              <!-- Spacing -->
-                           </tbody>
-                        </table>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </td>
-      </tr>
-   </tbody>
-</table>
-<!-- End of preheader --> 
+
+<% if user_signed_in? %>
+<%# preheader.html was here %>
 <!-- Start of LOGO -->
 <table width="100%" bgcolor="#e8eaed" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
    <tbody>
@@ -181,7 +130,7 @@
                                           <!-- Title -->
                                           <tr>
                                              <td style="font-family: Helvetica, arial, sans-serif; font-size: 14px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
-                                                Lorem ipsum dolor sit
+                                                Check out the most popular events around <%= @geo_location.city %> this week!
                                              </td>
                                           </tr>
                                           <!-- End of Title -->
@@ -193,7 +142,7 @@
                                           <!-- content -->
                                           <tr>
                                              <td style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #333333; text-align:left;line-height: 24px;">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                                Our elves have been hard at work, running around <%= @geo_location.city %> finding awesome upcoming events. From all their tireless work we're pleased to bring you the following, happening near you. Enjoy! :) And feel free to share, our elves love appreciation.
                                              </td>
                                           </tr>
                                           <!-- End of content -->
@@ -205,7 +154,7 @@
                                           <!-- button -->
                                           <tr>
                                              <td style="font-family: Helvetica, arial, sans-serif; font-size: 14px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
-                                                <a href="#" style="color:#16822d;text-decoration:none;font-weight:bold;">Read More</a>
+                                                <a href="http://www.facebook.com/share.php?u=www.elvent.io" style="color:#16822d;text-decoration:none;font-weight:bold;">Share</a>
                                              </td>
                                           </tr>
                                           <!-- /button -->
@@ -404,47 +353,13 @@
 <!-- End of 2-columns --> 
 <% end %>
 
-<!-- Start of postfooter -->
-<table width="100%" bgcolor="#202020" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
-   <tbody>
-      <tr>
-         <td>
-            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-               <tbody>
-                  <tr>
-                     <td width="100%">
-                        <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-                           <tbody>
-                              <!-- Spacing -->
-                              <tr>
-                                 <td width="100%" height="20"></td>
-                              </tr>
-                              <!-- Spacing -->
-                              <tr>
-                                 <td align="center" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #ffffff">
-                                    you have recevied this email because you have subscribed to username@company.com<br> If you no longer wish to recive emails please  <a href="#" style="text-decoration: none; color: #16822d">unsubscribe </a> 
-                                 </td>
-                              </tr>
-                              <!-- Spacing -->
-                              <tr>
-                                 <td width="100%" height="20"></td>
-                              </tr>
-                              <!-- Spacing -->
-                           </tbody>
-                        </table>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </td>
-      </tr>
-   </tbody>
-</table>
+<%= link_to("Logout", destroy_user_session_path, :method => :delete, :class => "logout_button") %>
+
+<%# postfooter.html was here %>
 
 
 
-<% if user_signed_in? %>
-	<%= @response %>
+<!-- 	<%= @response %>
 	<%= link_to("Logout", destroy_user_session_path, :method => :delete) %>
 
 	<% @local_top_12.each do |event| %>
@@ -456,7 +371,8 @@
 		</a>
 
 		<br>
-		<%= event.start_time %>
+		<%= event.start_time.to_date %>
+		<%= event.start_time.to_time %>
 		<%= event.longitude %>
 		<%= event.latitude %>
 		<br>
@@ -466,7 +382,7 @@
 		<br>
 	<% end %>
 	<%= @just_string %>
-	<%= @total_word_count %>
+	<%= @total_word_count %> -->
 <% else %>
 	<div class="home_page">
 		<div class="welcome_one">Discover the Most Popular Events Near You!</div>
