@@ -68,8 +68,12 @@ class WelcomeController < ApplicationController
 
 
 		# Get user location
-  		@user_fb_location = @user_fb['location']['name']
-  		@geo_location = Geocoder.search(@user_fb_location)[0]
+		if @user_fb['location'] == [] or @user_fb['location'] == nil
+  			@geo_location = request.location
+  		else
+  			@user_fb_location = @user_fb['location']['name']
+  			@geo_location = Geocoder.search(@user_fb_location)[0]
+  		end
   		# Nearby coordinates ranges (0.3 = ~20 miles)
   		lat_high = @geo_location.latitude + 0.3
   		lat_low = @geo_location.latitude - 0.3
@@ -94,7 +98,7 @@ class WelcomeController < ApplicationController
   		@nearby_locations = Location.where("latitude > ? and latitude < ? and longitude > ? and longitude < ?", lat_low, lat_high, long_low, long_high)
 
   		# Eventbrite API load
-  		@response = Eventbrite::Event.search({popular: true})
+  		# @response = Eventbrite::Event.search({popular: true, location: {latitude: @geo_location.latitude.to_s, longitude: @geo_location.longitude.to_s, within: "10km"} })
 
 
   		# generic words for broadening event search results
