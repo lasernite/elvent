@@ -7,7 +7,9 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '1a20db70b68ca3c3c6c44dfa190772b83e75c24d2a0d5627fd572ce5979f7ca1fda8a332dcd8a8402270c3b226cddb93e7747b61213ffb00fcb3deadcfbc5ee8'
+  config.secret_key = '290dbbfea2d24e62969f7ffd25f709069ec05215851c9c898aca9b5c329576287f62c9180774c69bd8cac23246fd4bc5eb2f3ef611c41dac5752859c3b2d7202'
 
+  
   # Omniauth Facebook 
   API_KEYS = YAML::load_file("#{Rails.root}/config/api_keys.yml")[Rails.env]
   config.omniauth :facebook, API_KEYS['facebook']['app_id'], API_KEYS['facebook']['app_secret'], :scope => "email,user_location", info_fields: 'email, name'
