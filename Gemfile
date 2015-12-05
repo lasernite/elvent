@@ -19,6 +19,12 @@ gem 'coffee-rails', '~> 4.0.0'
 # Users via devise
 gem 'devise'
 
+# Delayed mail
+gem 'delayed_job_active_record'
+
+# daemons for delayed job start
+gem 'daemons'
+
 # Omniauth fb with devise
 gem 'omniauth-facebook'
 
