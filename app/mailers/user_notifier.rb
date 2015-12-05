@@ -100,7 +100,7 @@ class UserNotifier < ActionMailer::Base
 		@nearby_locations = Location.where("latitude > ? and latitude < ? and longitude > ? and longitude < ?", lat_low, lat_high, long_low, long_high)
 
 		# Eventbrite API load
-		# @response = Eventbrite::Event.search({popular: true, location: {latitude: @geo_location.latitude.to_s, longitude: @geo_location.longitude.to_s, within: "10km"} })
+		# @response = Eventbrite::Event.search({popular: true, :"location.latitude" => @geo_location.latitude.to_s, :"location.longitude" => @geo_location.longitude.to_s, :"location.within" => "10km"})
 
 
 		# generic words for broadening event search results
