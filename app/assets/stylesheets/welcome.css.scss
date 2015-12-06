@@ -20,7 +20,7 @@ body {
 
 .welcome_one {
 	text-align: center;
-	font-family: helvetica, arial, sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-size: 72px;
 	padding-top: 8vh;
 	padding-left: 10px;
@@ -33,7 +33,7 @@ body {
 
 .welcome_two {
 	text-align: center;
-	font-family: helvetica, arial, sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-size: 48px;
 	padding-top: 27vh;
 	padding-left: 10px;
@@ -66,9 +66,9 @@ body {
 	margin-right: 27px;
 	margin-top: 39px;
 	color: #fff;
-	font-size: 43px;
+	font-size: 38px;
 	text-decoration: none;
-	font-family: helvetica, arial, sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	float: right;
 }
 
@@ -85,6 +85,39 @@ body {
 .bottom_button {
 	color: white;
 	padding-left: 15px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+}
+
+// Logged in page
+
+.through_page {
+	height: 100vh;
+	margin-left: 5vw;
+	width: 90vw;
+	text-align: center;
+}
+
+.text_style {
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.welcome_name {
+	margin-top: 34px;
+	font-size: 34px;
+
+}
+
+.finding_events {
+	margin-top: 24px;
+	font-size: 24px;
+}
+
+.finished_email {
+	margin-top: 24px;
+	font-size: 24px;
+}
+
+.invite_friends {
+	margin-top: 34px;
+	font-size: 34px;
 }

@@ -1,8 +1,23 @@
+<div id="fb-root"></div>
 
 
 <% if user_signed_in? %>
-<h1>Thanks for signing up, <%= @user.name %>!</h1>
-    <p>Thanks for joining and have a great day! Our elves are working to find some awesome events coming your way!</p>
+
+<div class="through_page"%>
+
+   <div class="welcome_name text_style">Welcome, <%= @user.name.split(" ")[0] %>!</div>
+
+   <div class="finding_events text_style">Our elves are busy finding awesome events around <%= @geo_location.city %> for you right now!</div>
+
+   <div class="finished_email text_style">When they've finished in a minute we'll send them to you at <%= @user.email %> :) </div>
+
+   <div class="invite_friends text_style">In the meantime, share the elf love and receive 108 sextillion (108,000,000,000,000,000,000,000) elverians for every friend that joins!</div>
+
+   <div class="fb-like" data-href="http://www.elvent.io/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+</div>
+
+
 
     <%# @response['events'].each do |event| %>
       <br>
