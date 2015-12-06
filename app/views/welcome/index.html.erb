@@ -9,11 +9,24 @@
 
    <div class="finding_events text_style">Our elves are busy finding awesome events around <%= @geo_location.city %> for you right now!</div>
 
-   <div class="finished_email text_style">When they've finished in a minute we'll send them to you at <%= @user.email %> :) </div>
+   <div class="finished_email text_style">When they've finished in a minute we'll send them to you at <%= @user.email %> <span class="change_email">change</span></div>
 
+<!-- 
    <div class="invite_friends text_style">In the meantime, share the elf love and receive 108 sextillion (108,000,000,000,000,000,000,000) elverians for every friend that joins!</div>
 
-   <div class="fb-like" data-href="http://www.elvent.io/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+   
+
+   <div class="fb-like fb_buttons" data-href="http://www.elvent.io/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+-->
+
+   <div class="fb_share_link">
+      <button class="fb_share_button" onclick="window.open('https://www.facebook.com/dialog/feed?link=elvent.io&amp;app_id=871569562938664&amp;redirect_uri=http://www.elvent.io/&amp;display=popup', 'fbshare', 'width=640,height=320');">
+         <%= image_tag "facebook_logo.png", :class => 'facebook_share_logo' %>
+         <div class="fb_share_text" %> 
+            Share
+         </div>
+      </button>
+   </div>
 
 </div>
 
