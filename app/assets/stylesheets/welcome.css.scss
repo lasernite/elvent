@@ -14,8 +14,36 @@ body {
 .home_page {
 	height: 100vh;
 	width: 100vw;
-	background: url(asset-path('nicholas_cage_elf.gif')) no-repeat center center fixed; 
-  	background-size: cover;
+}
+
+.background_gif_1 {
+	background: url(asset-path('3d_light_elves.gif')) no-repeat center center fixed; 
+	background-size: cover;
+}
+
+.background_gif_2 {
+	background: url(asset-path('ashton_kutcher.gif')) no-repeat center center fixed; 
+	background-size: cover;
+}
+
+.background_gif_3 {
+	background: url(asset-path('dobby_harry_potter_elf.gif')) no-repeat center center fixed; 
+	background-size: cover;
+}
+
+.background_gif_4 {
+	background: url(asset-path('elf_movie_elevator.gif')) no-repeat center center fixed; 
+	background-size: cover;
+}
+
+.background_gif_5 {
+	background: url(asset-path('elf_movie_street_crossing.gif')) no-repeat center center fixed; 
+	background-size: cover;
+}
+
+.background_gif_6 {
+	background: url(asset-path('orlando_bloom.gif')) no-repeat center center fixed;
+	background-size: cover; 
 }
 
 .welcome_one {

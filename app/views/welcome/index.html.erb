@@ -1,3 +1,4 @@
+
 <div id="fb-root"></div>
 
 
@@ -52,9 +53,9 @@
 <%# postfooter.html was here %>
 
 <% else %>
-	<div class="home_page">
-		<div class="welcome_one">Discover the Most Popular Events Near You!</div>
-		<div class="welcome_two">Let our elves work for you ;)</div>
+	<div class="home_page background_gif_<%=rand(1..6)%>">
+		<div class="welcome_one">Discover the World Around You!</div>
+		<div class="welcome_two">Let our elves connect you to the magic happening near you ;)</div>
 		<div class="fb_login_link">
 			<%= link_to user_omniauth_authorize_path(:facebook) do  %>
 				<div class="fb_login_button">
