@@ -82,11 +82,6 @@ body {
 	width: 300px;
 }
 
-.bottom_button {
-	color: white;
-	padding-left: 15px;
-}
-
 // Logged in page
 
 .through_page {
@@ -140,7 +135,7 @@ body {
 }
 
 .fb_share_button {
-	width: 600px;
+	width: 360px;
 	height: 120px;
 	border-radius: 6px;
 	background: linear-gradient(rgb(76, 105, 186), rgb(59, 85, 160));
@@ -164,6 +159,16 @@ body {
 .facebook_share_logo {
 	width: 90px;
 	margin-top: 3px;
+}
+
+.bottom_button {
+	color: white;
+	padding-left: 15px;
+	text-decoration: none;
+}
+
+.through_footer {
+	margin-bottom: 12px;
 }
 
 

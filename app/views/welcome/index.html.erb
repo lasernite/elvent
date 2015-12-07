@@ -9,7 +9,7 @@
 
    <div class="finding_events text_style">Our elves are busy finding awesome events around <%= @geo_location.city %> for you right now!</div>
 
-   <div class="finished_email text_style">When they've finished in a minute we'll send them to you at <%= @user.email %> <span class="change_email">change</span></div>
+   <div class="finished_email text_style">When they've finished in a minute we'll send them to you at <%= @user.email %> <!--span class="change_email">change</span--></div>
 
 <!-- 
    <div class="invite_friends text_style">In the meantime, share the elf love and receive 108 sextillion (108,000,000,000,000,000,000,000) elverians for every friend that joins!</div>
@@ -40,12 +40,14 @@
 
     <%#= @response %>
 
-<center>
-   <%= link_to("Logout", destroy_user_session_path, :method => :delete, :class => "bottom_button") %>
-   <%= link_to('Privacy Policy', 'privacy_policy', :target => '_blank', :class => "bottom_button") %>
-   <%= link_to('Terms', 'terms', :target => '_blank', :class => "bottom_button") %>
-   <%= link_to('Support', 'support', :target => '_blank', :class => "bottom_button") %>
-</center>
+<div class="through_footer">
+   <center>
+      <%= link_to("Logout", destroy_user_session_path, :method => :delete, :class => "bottom_button text_style") %>
+      <%= link_to('Privacy Policy', 'privacy_policy', :class => "bottom_button text_style") %>
+      <%= link_to('Terms', 'terms', :class => "bottom_button text_style") %>
+      <%= link_to('Support', 'support', :class => "bottom_button text_style") %>
+   </center>
+</div>
 
 <%# postfooter.html was here %>
 
