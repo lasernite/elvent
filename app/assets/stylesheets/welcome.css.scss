@@ -125,19 +125,22 @@ body {
 }
 
 .welcome_name {
-	margin-top: 34px;
-	font-size: 34px;
+	margin-top: 20vh;
+	font-size: 54px;
+	text-shadow: 3px 3px 2px #000;
 
 }
 
 .finding_events {
-	margin-top: 24px;
-	font-size: 24px;
+	margin-top: 42px;
+	font-size: 42px;
+	text-shadow: 3px 3px 2px #000;
 }
 
 .finished_email {
-	margin-top: 24px;
-	font-size: 24px;
+	margin-top: 42px;
+	font-size: 42px;
+	text-shadow: 3px 3px 2px #000;
 }
 
 .change_email {
@@ -156,7 +159,7 @@ body {
 
 .fb_share_link {
 	position: absolute;
-	margin-top: 28px;
+	margin-top: 72px;
 	padding-bottom: 10px;
 	width: 600px;
 	margin-left: calc(45% - 300px);
