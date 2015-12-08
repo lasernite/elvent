@@ -8,7 +8,8 @@ html, body {
 }
 
 body {
-	background: linear-gradient(rgb(76, 186, 105), rgb(59, 160, 85));
+	background: linear-gradient(#217C39, #1B642E)
+	//linear-gradient(rgb(76, 186, 105), rgb(59, 160, 85));
 }
 
 .home_page {
@@ -127,20 +128,20 @@ body {
 .welcome_name {
 	margin-top: 20vh;
 	font-size: 54px;
-	text-shadow: 3px 3px 2px #000;
+	//text-shadow: 3px 3px 2px #000;
 
 }
 
 .finding_events {
 	margin-top: 42px;
 	font-size: 42px;
-	text-shadow: 3px 3px 2px #000;
+	//text-shadow: 3px 3px 2px #000;
 }
 
 .finished_email {
 	margin-top: 42px;
 	font-size: 42px;
-	text-shadow: 3px 3px 2px #000;
+	//text-shadow: 3px 3px 2px #000;
 }
 
 .change_email {
