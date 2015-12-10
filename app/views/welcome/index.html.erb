@@ -46,25 +46,31 @@
       <%= link_to("Logout", destroy_user_session_path, :method => :delete, :class => "bottom_button text_style") %>
       <%= link_to('Privacy Policy', 'privacy_policy', :class => "bottom_button text_style") %>
       <%= link_to('Terms', 'terms', :class => "bottom_button text_style") %>
-      <%= link_to('Support', 'support', :class => "bottom_button text_style") %>
+      <%= link_to('Support & Feedback', 'support', :class => "bottom_button text_style") %>
    </center>
 </div>
 
 <%# postfooter.html was here %>
 
 <% else %>
-	<div class="home_page background_gif_<%=rand(1..6)%>">
-		<div class="welcome_one">Our Elves Find Popular <%= request.location.city %> Events Near You!</div>
-		<div class="welcome_two">Get connected to awesome <%= request.location.city %> events :)</div>
-		<div class="fb_login_link">
-			<%= link_to user_omniauth_authorize_path(:facebook) do  %>
-				<div class="fb_login_button">
-					<%= image_tag "facebook_logo.png", :class => 'facebook_logo' %>
-					<div class="fb_login_text" %> 
-						Sign up with Facebook
-					</div>
-				</div>
-			<% end %>
-		</div>
+   <div class="home_page background_gif_<%=rand(1..6)%>">
+      <div class="background_grey">
+   		<div class="welcome_one">
+            Our Elves Find Popular <%= request.location.city %> Events Near You!
+         </div>
+   		<div class="welcome_two">
+            Get connected to awesome <%= request.location.city %> events :)
+         </div>
+   		<div class="fb_login_link">
+   			<%= link_to user_omniauth_authorize_path(:facebook) do  %>
+   				<div class="fb_login_button">
+   					<%= image_tag "facebook_logo.png", :class => 'facebook_logo' %>
+   					<div class="fb_login_text" %> 
+   						Sign up with Facebook
+   					</div>
+   				</div>
+   			<% end %>
+   		</div>
+      </div>
 	</div>
 <% end %>

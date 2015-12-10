@@ -8,11 +8,17 @@ html, body {
 }
 
 body {
-	background: linear-gradient(#217C39, #1B642E)
+	background: linear-gradient(#217C39, #1B642E);
 	//linear-gradient(rgb(76, 186, 105), rgb(59, 160, 85));
 }
 
 .home_page {
+	height: 100vh;
+	width: 100vw;
+}
+
+.background_grey {
+	background-color: rgba(0,0,0,0.5);
 	height: 100vh;
 	width: 100vw;
 }
@@ -201,6 +207,16 @@ body {
 
 .through_footer {
 	margin-bottom: 12px;
+}
+
+// Static Pages
+
+.static_pages {
+	height: 100vh;
+	width: calc(100vw-54px);
+	padding-left: 27px;
+	padding-right: 27px;
+
 }
 
 
