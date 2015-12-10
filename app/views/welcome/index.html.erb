@@ -56,10 +56,10 @@
    <div class="home_page background_gif_<%=rand(1..6)%>">
       <div class="background_grey">
    		<div class="welcome_one">
-            Our Elves Find Popular <%= request.location.city %> Events Near You!
+            Our Elves Find Popular Events <%= @welcome1 %>!
          </div>
    		<div class="welcome_two">
-            Get connected to awesome <%= request.location.city %> events :)
+            Get weekly email updates on awesome upcoming events <%= @welcome2 %> :)
          </div>
    		<div class="fb_login_link">
    			<%= link_to user_omniauth_authorize_path(:facebook) do  %>
