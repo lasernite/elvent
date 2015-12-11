@@ -28,6 +28,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    animate-rails (1.0.8)
+      rails
     arel (5.0.1.20140414130214)
     bcrypt (3.1.10)
     builder (3.2.2)
@@ -60,6 +62,8 @@ GEM
     execjs (2.6.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     geocoder (1.2.11)
     hashie (3.4.2)
     hike (1.2.3)
@@ -170,16 +174,19 @@ GEM
     unf_ext (0.0.7.1)
     warden (1.2.3)
       rack (>= 1.0)
+    wow-rails (0.0.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  animate-rails
   coffee-rails (~> 4.0.0)
   daemons
   delayed_job_active_record
   devise
   eventbrite
+  font-awesome-rails
   geocoder
   jbuilder (~> 2.0)
   jquery-rails
@@ -194,3 +201,4 @@ DEPENDENCIES
   spring
   turbolinks
   uglifier (>= 1.3.0)
+  wow-rails

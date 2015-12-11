@@ -52,6 +52,13 @@ gem 'spring',        group: :development
 # Eventbrite API wrapper
 gem 'eventbrite'
 
+# Animation
+gem 'animate-rails'
+gem 'wow-rails'
+
+# Font awesome
+gem 'font-awesome-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

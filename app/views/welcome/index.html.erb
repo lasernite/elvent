@@ -61,7 +61,7 @@
    		<div class="welcome_two">
             Get weekly email updates on awesome upcoming events :)
          </div>
-   		<div class="fb_login_link">
+   		<div class="fb_login_link wow bounce" data-wow-delay="3s" data-wow-iteration="3">
    			<%= link_to user_omniauth_authorize_path(:facebook) do  %>
    				<div class="fb_login_button">
    					<%= image_tag "facebook_logo.png", :class => 'facebook_logo' %>
@@ -71,6 +71,8 @@
    				</div>
    			<% end %>
    		</div>
+
+         <i class="fa fa-chevron-down fa-4x page_down wow bounce" data-wow-delay="15s" data-wow-iteration="3"></i>
       </div>
 	</div>
 <% end %>
