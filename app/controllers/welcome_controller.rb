@@ -4,11 +4,9 @@ class WelcomeController < ApplicationController
   	# temporary city from request.location.city, setting alternatives for landing page
   	@temp_city = request.location.city
   	if @temp_city == nil or @temp_city == ""
-  		@welcome1 = "Near You"
-  		@welcome2 = ""
+  		@welcome1 = "Around You"
   	else
-  		@welcome1 = "In " + @temp_city
-  		@welcome2 = "around " + @temp_city
+  		@welcome1 = "Around " + @temp_city
   	end
 
   	if user_signed_in?
