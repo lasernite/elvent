@@ -2,12 +2,12 @@ class WelcomeController < ApplicationController
   def index
 
   	# temporary city from request.location.city, setting alternatives for landing page
-  	@temp_city = request.location.city
-  	if @temp_city == nil or @temp_city == ""
-  		@welcome1 = "Around You"
-  	else
-  		@welcome1 = "Around " + @temp_city
-  	end
+  	# @temp_city = request.location.city
+  	# if @temp_city == nil or @temp_city == ""
+  	# 	@welcome1 = "Around You"
+  	# else
+  	# 	@welcome1 = "Around " + @temp_city
+  	# end
 
   	if user_signed_in?
 
